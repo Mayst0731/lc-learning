@@ -1,5 +1,7 @@
 ## DP
-1. Coin Change(Top Down)
+### 1. Coin Change(Top Down)
+    - return value
+    - cache type
 ```markdown
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -28,4 +30,5 @@ class Solution:
         findMin(coins,amount)
         return cache[amount] if cache[amount] != float('inf') else -1
  ```       
+### 2. Coin change(Bottom Up)
 
