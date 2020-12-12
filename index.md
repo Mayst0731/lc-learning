@@ -1,19 +1,36 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/meist0731/lc-learning/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
+## DP
 ### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
+1. Coin Change(Top Down)
 ```markdown
-Syntax highlighted code block
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        if amount == 0:
+            return 0
+        
+        cache = dict()
+        
+        def findMin(coins,amount):
+            if amount == 0:
+                return 0
+            if amount < 0:
+                return float('inf')
+            
+            if amount in cache:
+                return cache[amount]
+            
+            minCoins = float('inf')
+            for coin in coins:
+                previous_coins = findMin(coins,amount-coin)
+                minCoins = min(minCoins,previous_coins+1)
+            
+            cache[amount] = minCoins
+            return minCoins
+        
+        findMin(coins,amount)
+        return cache[amount] if cache[amount] != float('inf') else -1
+ ```       
 
-# Header 1
-## Header 2
-### Header 3
+
 
 - Bulleted
 - List
