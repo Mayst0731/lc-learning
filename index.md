@@ -1,7 +1,9 @@
 ## DP
 ### 1. Coin Change(Top Down)
-    - sub return value: float('inf')
-    - cache type: dict
+  - sub return value: float('inf')
+  - cache type: dict
+  - when to fetch the value in the cache
+
 ```markdown
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
