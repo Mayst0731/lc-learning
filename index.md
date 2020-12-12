@@ -1,7 +1,7 @@
 ## DP
 ### 1. Coin Change(Top Down)
-    - return value
-    - cache type
+    - sub return value: float('inf')
+    - cache type: dict
 ```markdown
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
