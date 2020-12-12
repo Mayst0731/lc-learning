@@ -40,4 +40,25 @@ class Solution:
                     res[i] = min(res[i-coin]+1,res[i])
         return res[-1] if res[-1] != float('inf') else -1
 ```
-
+### 3. Permute
+  - select one value from the choices(nums)
+  - decide the terminate condition
+```
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        res = []
+        N = len(nums)
+        
+        def findAns(nums,path):
+            if len(path) == N:
+                res.append(list(path))
+                return 
+            for i,num in enumerate(nums):
+                path.append(num)
+                findAns(nums[:i]+nums[i+1:],path)
+                path.pop()
+            
+        findAns(nums,[])
+        return res
+```
