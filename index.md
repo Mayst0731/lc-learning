@@ -62,3 +62,36 @@ class Solution:
         findAns(nums,[])
         return res
 ```
+### 4. N Queen
+```
+class Solution:
+    def solveNQueens(self, n):
+        res = []
+        row = 0
+        path = [-1]*n
+        board = []
+        self.dfs(row,path,board, res)
+        return res
+ 
+    # res is all the valid boards, board is only one board
+    # path is for recording the queens col index
+    # row is one row in a path
+    
+    def dfs(self,row, path, board, res):
+        if row == len(path):
+            res.append(board)
+            return  # backtracking
+        for i in range(len(path)):
+            path[row] = i
+            if self.valid(path, row):  # pruning
+                tmp = "."*len(path)
+                self.dfs(row+1, path, board+[tmp[:i]+"Q"+tmp[i+1:]], res)
+
+    # check whether nth queen can be placed in that column
+    def valid(self, path, row):
+        for i in range(row):
+            if abs(path[i]-path[row]) == row - i or path[i] == path[row]:
+                return False
+        return True
+        
+```
