@@ -62,6 +62,29 @@ class Solution:
         findAns(nums,[])
         return res
 ```
+```
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        
+        res = []
+        path = []
+        N = len(nums)
+        self.findPermute(nums,path,res,N)
+        return res
+    
+    # len(nums) is always changing, so N need to be record at the very first place
+    def findPermute(self, nums, path, res,N):
+        if len(path) == N:
+            res.append(list(path))
+            return 
+        
+        for i, num in enumerate(nums):
+            path.append(num)
+            left_nums = nums[:i]+nums[i+1:]
+            self.findPermute(left_nums,path,res,N)
+            path.pop()
+```
+
 ### 4. N Queen
 ```
 class Solution:
