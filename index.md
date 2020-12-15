@@ -40,6 +40,7 @@ class Solution:
                     res[i] = min(res[i-coin]+1,res[i])
         return res[-1] if res[-1] != float('inf') else -1
 ```
+## Backtracking
 ### 3. Permute
   - select one value from the choices(nums)
   - decide the terminate condition
@@ -116,5 +117,27 @@ class Solution:
             if abs(path[i]-path[row]) == row - i or path[i] == path[row]:
                 return False
         return True
+        
+```
+### 78. Subsets
+```
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        
+        res = []
+        
+        def backtrack(length,path,first):
+            if len(path)==length:
+                res.append(list(path))
+                
+            for i in range(first,len(nums)):
+                path.append(nums[i])
+                backtrack(length,path,i+1)
+                path.pop()
+        
+        for length in range(len(nums)+1):
+            backtrack(length,[],0)
+            
+        return res
         
 ```
