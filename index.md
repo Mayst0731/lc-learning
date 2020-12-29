@@ -180,3 +180,38 @@ class Solution:
         else:
             return self.findKthLargest(left,k-len(right)-len(middle))
 ```
+### 695. Max Area of Island
+- recursive
+```
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if len(grid) == 0:
+            return 0
+        
+        max_area = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == 1:
+                    area = self.dfs(grid,row,col)
+                    max_area = max(area,max_area) 
+        return max_area
+    
+    
+    def dfs(self,grid,row,col):
+        if row < 0 or row >= len(grid) or col < 0 or col >= len(grid[0]):
+            return 0
+        
+        if grid[row][col] == 0:
+            return 0
+        
+        if grid[row][col] == 1:
+            # after checking the unit, it should be set to be 0 immediately to avoid endless recursion
+            grid[row][col] = 0
+            left = self.dfs(grid,row,col-1)
+            right = self.dfs(grid,row,col+1)
+            up = self.dfs(grid,row-1,col)
+            down = self.dfs(grid,row+1,col)
+            area = 1 + left + right + up + down
+        return area
+           
+```
