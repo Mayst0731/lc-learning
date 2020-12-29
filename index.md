@@ -141,3 +141,24 @@ class Solution:
         return res
         
 ```
+### 215. Kth Largest Element in an Array
+
+- heap method:
+```
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        # extract sub nums of k length
+        k_nums = nums[:k]
+        # put the sub num into a heap
+        heapq.heapify(k_nums)
+        
+        # add the rest values into the list. First: push new value Second: pop the smallest value
+        for num in nums[k:]:
+            heapq.heappushpop(k_nums,num)
+        
+        return k_nums[0]
+```
+- Quick Selection
+```
+
+```
