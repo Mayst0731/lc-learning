@@ -160,5 +160,23 @@ class Solution:
 ```
 - Quick Selection
 ```
-
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if len(nums) == 0:
+            return -1
+        
+        pivot = nums[0]
+        
+        left = [num for num in nums if num < pivot]
+        middle = [num for num in nums if num == pivot]
+        right = [num for num in nums if num > pivot]
+        
+        if k <= len(right):
+            return self.findKthLargest(right,k)
+        
+        elif len(nums) - k >= len(left):
+            return middle[0]
+        
+        else:
+            return self.findKthLargest(left,k-len(right)-len(middle))
 ```
