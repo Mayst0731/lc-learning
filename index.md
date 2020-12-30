@@ -180,6 +180,27 @@ class Solution:
         else:
             return self.findKthLargest(left,k-len(right)-len(middle))
 ```
+- Quick Selection(change left, right and middle arrays number)
+```
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        if len(nums) == 0:
+            return -1
+        
+        pivot = nums[0]
+        
+        left = [num for num in nums if num > pivot]
+        middle = [num for num in nums if num == pivot]
+        right = [num for num in nums if num < pivot]
+        
+        if k <= len(left):
+            return self.findKthLargest(left,k)
+        elif k <= len(left) + len(middle):
+            return middle[0]
+        else:
+            return self.findKthLargest(right,k-(len(left)+len(middle)))
+ 
+```
 ### 695. Max Area of Island
 - recursive
 ```
