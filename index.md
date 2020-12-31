@@ -236,3 +236,46 @@ class Solution:
         return area
            
 ```
+### 295. Find Median from Data Stream
+```
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        # Initialize two heaps for storing nums
+        self.small = []
+        self.large = []
+
+    def addNum(self, num: int) -> None:
+        
+        if len(self.small) == 0:
+            heapq.heappush(self.small,-num)
+            # this return is important as the num will be added into small twice without this stop word.
+            return 
+        # add numbers into small or large arrs
+        if num <= -self.small[0]:
+            heapq.heappush(self.small, -num)
+        else:
+            heapq.heappush(self.large, num)
+        # balance size between small and large heaps, the difference between them should be limited to at most 1
+        
+        if len(self.small) - len(self.large) == 2:
+            heapq.heappush(self.large,-heapq.heappop(self.small))
+        
+        if len(self.large) - len(self.small) == 2:
+            heapq.heappush(self.small,-heapq.heappop(self.large)) 
+
+    def findMedian(self) -> float:
+        if len(self.small) == len(self.large):
+            median = (self.large[0]-self.small[0])/2
+        
+        if len(self.small) > len(self.large):
+            median = -float(self.small[0])
+            
+        if len(self.large) > len(self.small):
+            median = float(self.large[0])
+        
+        return median
+```
