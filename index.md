@@ -330,3 +330,21 @@ class Solution:
 
         return sum(nums) - min(nums)*len(nums)
 ```
+
+### 53. Maximum Subarray
+
+```
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        
+        max_sum = nums[0]
+        pre_sum = nums[0]
+        
+        for i,num in enumerate(nums[1:]):
+            if pre_sum < 0:
+                pre_sum = num
+            else:
+                pre_sum += num
+            max_sum = max(pre_sum,max_sum)
+        return max_sum
+```
