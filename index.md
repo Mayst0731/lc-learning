@@ -491,3 +491,29 @@ class Solution:
         return res
         
 ```
+### 1197. Minimum Knight Moves
+
+```
+class Solution:
+    def minKnightMoves(self, x: int, y: int) -> int:
+        # initialize a queue for bfs iteration
+        q = collections.deque()
+        q.append([0,0,0])
+        # record visited unit
+        visited = set()
+        # the (0,0) should be added into the visited record as initialization
+        visited.add((0,0))
+        # begin bfs
+        while q:
+            cur_x,cur_y,steps = q.popleft()
+            if cur_x==x and cur_y==y:
+                return steps
+            # loop through each choice, there are 8 choices for each unit, for each choice there should be added one step, and add the unit into visited and queue for the next loop's check
+            dirs = [(cur_x-1,cur_y-2),(cur_x-2,cur_y-1),(cur_x-2,cur_y+1),(cur_x-1,cur_y+2),(cur_x+1,cur_y-2),(cur_x+2,cur_y-1),(cur_x+1,cur_y+2),(cur_x+2,cur_y+1)]
+            for i,j in dirs:
+                if (i,j) not in visited:
+                    q.append([i,j,steps+1])
+                    visited.add((i,j))
+        return -1
+  
+```
