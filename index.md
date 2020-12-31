@@ -318,3 +318,10 @@ class Solution:
         }
         return switcher.get(operator)
 ```
+### 453. Minimum Moves to Equal Array Elements
+```
+class Solution:
+    def minMoves(self, nums: List[int]) -> int:
+
+        return sum(nums) - min(nums)*len(nums)
+```
