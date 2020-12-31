@@ -432,3 +432,42 @@ class Solution:
         return res
     
 ```
+### 621. Task Scheduler
+```
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        count_tasks = Counter(tasks)
+        all_slots = 0
+        h = []
+        # build a max-heap
+        for k,v in count_tasks.items():
+            heapq.heappush(h,[-v,k])
+        
+        # loop through the heap
+        while h:
+            # i is for counting which slot is going to be taken in current bucket
+            i = 0
+            # store the items needed to be counted the next loop
+            temp =[]
+            # n is the slots needed in this bucket
+            while i <= n:
+                # the total slot should be counted
+                all_slots += 1
+                # if h has items to be added into the bucket, it's good to add the item
+                if h:
+                    num,task = heapq.heappop(h)
+                    # the frequency should be substracted (freq is negative, so add 1)
+                    num += 1
+                    # if freq reach to 0, no need to add the item into temp for the next loop
+                    if num < 0:
+                        temp.append([num,task])
+                # when the current bucket is the last bucket, no need to continue loop
+                if not h and not temp: break
+                # the next slot to be filled then
+                i += 1
+            for freq_task in temp:
+                heapq.heappush(h,freq_task)
+                
+        return all_slots
+ 
+```
