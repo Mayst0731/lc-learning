@@ -405,3 +405,30 @@ class Solution:
         return ''.join(res)
 
 ```
+### 1209. Remove All Adjacent Duplicates in String II
+
+```
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        
+        stack = []
+        
+        for char in s:
+            if not stack:
+                stack.append([char,1])
+            elif stack and stack[-1][0] != char:
+                stack.append([char,1])    
+            elif stack and stack[-1][0] == char and stack[-1][1] == k-1:
+                stack.pop() 
+            elif stack and stack[-1][0] == char and stack[-1][1] < k-1:
+                stack[-1][1] += 1
+                
+            
+        
+        res = ''
+        for c,q in stack:
+            res += c*q
+            
+        return res
+    
+```
