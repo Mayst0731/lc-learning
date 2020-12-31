@@ -158,7 +158,9 @@ class Solution:
         
         return k_nums[0]
 ```
+
 - Quick Selection
+
 ```
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
@@ -180,7 +182,9 @@ class Solution:
         else:
             return self.findKthLargest(left,k-len(right)-len(middle))
 ```
+
 - Quick Selection(change left, right and middle arrays number)
+
 ```
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
@@ -199,8 +203,8 @@ class Solution:
             return middle[0]
         else:
             return self.findKthLargest(right,k-(len(left)+len(middle)))
- 
 ```
+
 ### 695. Max Area of Island
 - recursive
 ```
@@ -233,8 +237,7 @@ class Solution:
             up = self.dfs(grid,row-1,col)
             down = self.dfs(grid,row+1,col)
             area = 1 + left + right + up + down
-        return area
-           
+        return area          
 ```
 
 ### 295. Find Median from Data Stream
