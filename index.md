@@ -389,3 +389,19 @@ class Solution:
         
         return start_point if gas_in_tank >= gas_needed else -1
 ```
+### 1047. Remove All Adjacent Duplicates In String
+
+- Like matching game
+```
+class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        res = []
+        for c in S:
+            # if the num at the top of stack is the same as current char, they are matched and need to be erased together, so pop off it from the stack and continue looping through the array
+            if res and res[-1] == c:
+                res.pop()
+            else:
+                res.append(c)
+        return ''.join(res)
+
+```
