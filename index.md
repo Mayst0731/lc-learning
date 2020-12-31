@@ -370,3 +370,22 @@ class Solution:
             res = max(cur_max,res)
         return res
 ```
+### 134. Gas Station
+```
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        
+        gas_in_tank, gas_needed, start_point = 0,0,0
+        
+        for i,(g,c) in enumerate(zip(gas,cost)):
+            gas_in_tank += g - c
+            if gas_in_tank < 0:
+                start_point = i + 1
+                # since gas_in_tank is negative, we need to substract the value instead of add
+                gas_needed -= gas_in_tank
+                # re count gas in tank
+                gas_in_tank = 0
+                
+        
+        return start_point if gas_in_tank >= gas_needed else -1
+```
