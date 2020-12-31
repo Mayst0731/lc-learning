@@ -348,3 +348,25 @@ class Solution:
             max_sum = max(pre_sum,max_sum)
         return max_sum
 ```
+### 152. Maximum Product Subarray
+```
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        
+        if len(nums) == 0:
+            return 0
+        
+        
+        pre_min = nums[0]
+        pre_max = nums[0]
+        res = nums[0]
+        for i,num in enumerate(nums[1:]):
+            cur_min = min(num,pre_min*num,pre_max*num)
+            cur_max = max(num,pre_min*num,pre_max*num)
+            
+            pre_min = cur_min
+            pre_max = cur_max
+            
+            res = max(cur_max,res)
+        return res
+```
