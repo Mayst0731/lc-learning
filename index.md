@@ -471,3 +471,23 @@ class Solution:
         return all_slots
  
 ```
+### 767. Reorganize String
+```
+class Solution:
+    def reorganizeString(self, S: str) -> str:
+        res, c = [], Counter(S)
+        legal_heap = [(-v,k) for k,v in c.items()]
+        heapq.heapify(legal_heap)
+        illegal_freq, illegal_char = 0, ''
+        while legal_heap:
+            freq, char = heapq.heappop(legal_heap)
+            res.append(char)
+            if illegal_freq < 0:
+                heapq.heappush(legal_heap, (illegal_freq, illegal_char))
+            freq += 1
+            illegal_freq, illegal_char = freq, char
+        res = ''.join(res)
+        if len(res) != len(S): return ""
+        return res
+        
+```
