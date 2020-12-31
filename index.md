@@ -236,7 +236,9 @@ class Solution:
         return area
            
 ```
+
 ### 295. Find Median from Data Stream
+
 ```
 class MedianFinder:
 
@@ -279,7 +281,9 @@ class MedianFinder:
         
         return median
 ```
+
 ### 241. Different Ways to Add Parentheses
+
 ```
 class Solution:
     def diffWaysToCompute(self, input: str) -> List[int]:
@@ -318,6 +322,7 @@ class Solution:
         }
         return switcher.get(operator)
 ```
+
 ### 453. Minimum Moves to Equal Array Elements
 ```
 class Solution:
