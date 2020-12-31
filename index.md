@@ -279,3 +279,42 @@ class MedianFinder:
         
         return median
 ```
+### 241. Different Ways to Add Parentheses
+```
+class Solution:
+    def diffWaysToCompute(self, input: str) -> List[int]:
+        memo = dict()
+        res = self.getResult(input,memo)
+        return res
+    
+    def getResult(self,input,memo):
+        if input in memo:
+            return memo[input]
+        
+        # don't forget to turn string into int for calculation
+        if input.isdigit():
+            memo[input] = [int(input)]
+            return [int(input)]
+        res = []
+        operators = '+-*'
+        for i, char in enumerate(input):
+            if char in operators:
+                left = self.getResult(input[:i],memo)
+                right = self.getResult(input[i+1:],memo)
+                
+                for l_num in left:
+                    for r_num in right:
+                        single_res = self.operate(char,l_num,r_num)
+                        res.append(single_res)
+        memo[input] = res     
+        return res
+        
+    
+    def operate(self,operator,num1,num2):
+        switcher = {
+            '+': num1+num2,
+            '-': num1-num2,
+            '*': num1*num2,
+        }
+        return switcher.get(operator)
+```
