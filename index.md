@@ -392,6 +392,7 @@ class Solution:
         
         return start_point if gas_in_tank >= gas_needed else -1
 ```
+
 ### 1047. Remove All Adjacent Duplicates In String
 
 - Like matching game
@@ -406,8 +407,8 @@ class Solution:
             else:
                 res.append(c)
         return ''.join(res)
-
 ```
+
 ### 1209. Remove All Adjacent Duplicates in String II
 
 ```
@@ -432,10 +433,11 @@ class Solution:
         for c,q in stack:
             res += c*q
             
-        return res
-    
+        return res    
 ```
+
 ### 621. Task Scheduler
+
 ```
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
@@ -471,10 +473,11 @@ class Solution:
             for freq_task in temp:
                 heapq.heappush(h,freq_task)
                 
-        return all_slots
- 
+        return all_slots 
 ```
+
 ### 767. Reorganize String
+
 ```
 class Solution:
     def reorganizeString(self, S: str) -> str:
@@ -491,10 +494,11 @@ class Solution:
             illegal_freq, illegal_char = freq, char
         res = ''.join(res)
         if len(res) != len(S): return ""
-        return res
-        
+        return res       
 ```
+
 ### 1197. Minimum Knight Moves
+
 
 ```
 class Solution:
@@ -517,11 +521,12 @@ class Solution:
                 if (i,j) not in visited:
                     q.append([i,j,steps+1])
                     visited.add((i,j))
-        return -1
-  
+        return -1 
 ```
 
+
 ### 1507. Reformat Date
+
 
 ```
 class Solution:
