@@ -520,3 +520,50 @@ class Solution:
         return -1
   
 ```
+
+### 1507. Reformat Date
+
+```
+class Solution:
+    def reformatDate(self, date: str) -> str:
+        date_lst = date.split()
+        
+        d = date_lst[0]
+        m = date_lst[1]
+        y = date_lst[2]
+        
+        special_date = ['1st','2nd','3rd']
+        
+        if d in special_date:
+            d = str(special_date.index(d)+1)
+        
+        else:
+            d = d[:-2]
+            
+        if len(d) < 2:
+            d = '0' + d
+            
+        m = self.month(m)
+        
+        y = str(y)
+        
+        res = y + "-" + m + "-" + d
+        return res
+    
+    def month(self,m):
+        return {
+            "Jan":'01',
+            "Feb":'02',
+            "Mar":"03", 
+            "Apr":"04",
+            "May":"05",
+            "Jun":"06", 
+            "Jul":"07",
+            "Aug":"08",
+            "Sep":"09",
+            "Oct":"10",
+            "Nov":"11", 
+            "Dec":"12"
+        }.get(m)
+        
+```
