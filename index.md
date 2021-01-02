@@ -571,3 +571,68 @@ class Solution:
             "Dec":"12"
         }.get(m)       
 ```
+
+### 669. Trim a Binary Search Tree
+- iterative
+```
+class Solution:
+    def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
+        
+        if not root:
+            return None
+        
+        # find the proper root
+        while root:
+            if root.val < low and root.right:
+                root = root.right
+            elif root.val > high and root.left:
+                root = root.left
+            else:
+                break
+        # trim root's children
+        # trim left child
+        parent = root
+        node = root.left
+        
+        while node:
+            if node.val < low:
+                parent.left = node.right
+                node = node.right
+                
+            else:
+                parent = node
+                node = node.left
+        # trim right child        
+        parent = root
+        node = root.right
+        while node:
+            if node.val > high:
+                parent.right = node.left
+                node = node.left
+            else:
+                parent = node
+                node = node.right
+        return root
+```
+
+- Recursive
+
+```
+class Solution:
+    def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
+        
+        if not root:
+            return None
+        
+        if root.val < low:
+            root = self.trimBST(root.right,low,high)
+        
+        elif root.val > high:
+            root = self.trimBST(root.left, low,high)
+            
+        else:
+            root.left = self.trimBST(root.left,low,high)
+            root.right = self.trimBST(root.right,low,high)
+        
+        return root
+```
