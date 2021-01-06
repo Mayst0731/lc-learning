@@ -636,3 +636,108 @@ class Solution:
         
         return root
 ```
+
+### 994. Rotting Oranges
+
+```
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        '''
+        1. find all rotten orange and save them in to a stack
+        2. use the recorded rotten orange to rot fresh orange, and save the rotten fresh orange into stack
+        3. till the stack is empty(1) if there's no fresh orange, return minites (2) otherwise, return -1
+        
+        difficulties: 1. how to count minutes?
+                        ans: simply count each round's rotten oranges
+        '''
+        
+        rotten_stack = []
+        
+        fresh = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] == 2:
+                    rotten_stack.append((row,col))
+                elif grid[row][col] == 1:
+                    fresh += 1
+                else:
+                    continue 
+        minutes = 0
+        
+        while rotten_stack and fresh >0 :
+            minutes += 1
+            visited_rotten = 0 
+            one_round = len(rotten_stack)
+            while visited_rotten < one_round:
+                rotten_row,rotten_col = rotten_stack.pop(0)
+                visited_rotten += 1
+                for x,y in [(0,1),(0,-1),(1,0),(-1,0)]:
+                    if self.is_valid(rotten_row+x,rotten_col+y,grid) and grid[rotten_row+x][rotten_col+y] == 1:
+                        grid[rotten_row+x][rotten_col+y] = 2
+                        rotten_stack.append((rotten_row+x,rotten_col+y))
+                        fresh -= 1
+                    elif not self.is_valid(rotten_row+x,rotten_col+y,grid) or grid[rotten_row+x][rotten_col+y] == 2 or grid[rotten_row+x][rotten_col+y] == 0:
+                        continue
+        
+        return minutes if fresh == 0 else -1
+                
+    def is_valid(self,x,y,grid):
+        rows = len(grid)
+        cols = len(grid[0])
+        if x >= 0 and x < rows and y >= 0 and y < cols:
+            return True
+        else:
+            return False    
+```
+
+### 1192. Critical Connections in a Network
+
+```
+class Solution:
+    def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
+        # jump is for storing the minimum mark that the current node has seen
+        
+        def build_graph(n,connections):
+            '''
+            build a graph for traversal
+            '''
+            graph = collections.defaultdict(set)
+            
+            for node,nei in connections:
+                graph[node].add(nei)
+                graph[nei].add(node)
+            return graph
+        
+        def dfs(cur,par,cur_level,minimum_seen,graph,res):
+            '''
+            Traverse from current node and explore its neighbors to fetch the minimum value             its children can reach
+            '''
+            if minimum_seen[cur] >= 0:
+                return minimum_seen[cur]
+            
+            # every time when reaching a node, write its corresponding value into minimum_seen
+            minimum_seen[cur] = cur_level
+            # loop over its neighbors to know if any neighbor has lower value
+            for nei in graph[cur]:
+                if nei == par:
+                    continue # do nothing, avoid infinite recursion
+                # nei hasn't beed visited
+                
+                # if neighbor hasn't been visited
+                elif minimum_seen[nei] == -1:
+                    minimum_seen[cur]=min(dfs(nei,cur,cur_level+1,minimum_seen,graph,res),minimum_seen[cur])
+                    
+                # if neighbor has been visited before
+                else:
+                    minimum_seen[cur]=min(minimum_seen[nei],minimum_seen[cur])
+            # if the minimum value that the current node's can reach is itself, it means there's no cycle 
+            if minimum_seen[cur] == cur_level and par != -1:
+                res.append([par,cur])
+            
+            return minimum_seen[cur]
+        res = []
+        minimum_seen = [-1]*n
+        graph = build_graph(n,connections)
+        dfs(0,-1,0,minimum_seen,graph,res)
+        return res
+```
