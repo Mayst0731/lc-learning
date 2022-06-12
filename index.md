@@ -28,7 +28,7 @@ class Solution:
         return cache[amount] if cache[amount] != float('inf') else -1
  ```       
 ### 2. Coin change(Bottom Up)
-```
+```python
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         res = [float('inf')] * (amount+1)
@@ -44,7 +44,7 @@ class Solution:
 ### 3. Permute
   - select one value from the choices(nums)
   - decide the terminate condition
-```
+```python
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
@@ -63,7 +63,7 @@ class Solution:
         findAns(nums,[])
         return res
 ```
-```
+```python
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
@@ -87,7 +87,7 @@ class Solution:
 ```
 
 ### 4. N Queen
-```
+```python
 class Solution:
     def solveNQueens(self, n):
         res = []
@@ -120,7 +120,7 @@ class Solution:
         
 ```
 ### 78. Subsets
-```
+```python
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         
@@ -144,7 +144,7 @@ class Solution:
 ### 215. Kth Largest Element in an Array
 
 - heap method:
-```
+```python
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         # extract sub nums of k length
@@ -161,7 +161,7 @@ class Solution:
 
 - Quick Selection
 
-```
+```python
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         if len(nums) == 0:
@@ -185,7 +185,7 @@ class Solution:
 
 - Quick Selection(change left, right and middle arrays number)
 
-```
+```python
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         if len(nums) == 0:
@@ -207,7 +207,7 @@ class Solution:
 
 ### 695. Max Area of Island
 - recursive
-```
+```python
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         if len(grid) == 0:
@@ -242,7 +242,7 @@ class Solution:
 
 ### 295. Find Median from Data Stream
 
-```
+```python
 class MedianFinder:
 
     def __init__(self):
@@ -287,7 +287,7 @@ class MedianFinder:
 
 ### 241. Different Ways to Add Parentheses
 
-```
+```python
 class Solution:
     def diffWaysToCompute(self, input: str) -> List[int]:
         memo = dict()
@@ -327,7 +327,7 @@ class Solution:
 ```
 
 ### 453. Minimum Moves to Equal Array Elements
-```
+```python
 class Solution:
     def minMoves(self, nums: List[int]) -> int:
 
@@ -336,7 +336,7 @@ class Solution:
 
 ### 53. Maximum Subarray
 
-```
+```python
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         
@@ -352,7 +352,7 @@ class Solution:
         return max_sum
 ```
 ### 152. Maximum Product Subarray
-```
+```python
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         
@@ -374,7 +374,7 @@ class Solution:
         return res
 ```
 ### 134. Gas Station
-```
+```python
 class Solution:
     def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
         
@@ -396,7 +396,7 @@ class Solution:
 ### 1047. Remove All Adjacent Duplicates In String
 
 - Like matching game
-```
+```python
 class Solution:
     def removeDuplicates(self, S: str) -> str:
         res = []
@@ -411,7 +411,7 @@ class Solution:
 
 ### 1209. Remove All Adjacent Duplicates in String II
 
-```
+```python
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
         
@@ -438,7 +438,7 @@ class Solution:
 
 ### 621. Task Scheduler
 
-```
+```python
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         count_tasks = Counter(tasks)
@@ -478,7 +478,7 @@ class Solution:
 
 ### 767. Reorganize String
 
-```
+```python
 class Solution:
     def reorganizeString(self, S: str) -> str:
         res, c = [], Counter(S)
@@ -500,7 +500,7 @@ class Solution:
 ### 1197. Minimum Knight Moves
 
 
-```
+```python
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
         # initialize a queue for bfs iteration
@@ -528,7 +528,7 @@ class Solution:
 ### 1507. Reformat Date
 
 
-```
+```python
 class Solution:
     def reformatDate(self, date: str) -> str:
         date_lst = date.split()
@@ -574,7 +574,7 @@ class Solution:
 
 ### 669. Trim a Binary Search Tree
 - iterative
-```
+```python
 class Solution:
     def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
         
@@ -617,7 +617,7 @@ class Solution:
 
 - Recursive
 
-```
+```python
 class Solution:
     def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
         
@@ -639,7 +639,7 @@ class Solution:
 
 ### 994. Rotting Oranges
 
-```
+```python
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         '''
@@ -692,7 +692,7 @@ class Solution:
 
 ### 1192. Critical Connections in a Network
 
-```
+```python
 class Solution:
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
         # jump is for storing the minimum mark that the current node has seen
