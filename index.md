@@ -4,7 +4,7 @@
   - cache type: dict
   - when to fetch the value in the cache
 
-```
+```python
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0:
